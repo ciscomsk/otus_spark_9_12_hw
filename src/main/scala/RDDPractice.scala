@@ -6,7 +6,7 @@ import java.sql.Timestamp
 
 object RDDPractice extends App with SparkSessionWrapper {
 
-  def getTiming(rdd :RDD[Timestamp]): RDD[(String, Int)] = {
+  def getTimeDistribution24H(rdd :RDD[Timestamp]): RDD[(String, Int)] = {
 
     val sc: SparkContext = spark.sparkContext
 
@@ -104,7 +104,7 @@ object RDDPractice extends App with SparkSessionWrapper {
       // - 360000 => приводим к GMT +03:00
       .map(row => new Timestamp(row.getTimestamp(1).getTime - 3600000))
 
-  val resRDD: RDD[(String, Int)] = getTiming(dataRDD).sortBy(_._2, ascending = false)
+  val resRDD: RDD[(String, Int)] = getTimeDistribution24H(dataRDD).sortBy(_._2, ascending = false)
 
   resRDD.foreach(println)
 
