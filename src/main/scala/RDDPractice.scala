@@ -2,7 +2,6 @@ import org.apache.spark.rdd.RDD
 import DFPractice.readParquet
 import org.apache.spark.SparkContext
 
-import java.nio.file.{Files, Path, Paths}
 import java.sql.Timestamp
 
 object RDDPractice extends App with SparkSessionWrapper {
