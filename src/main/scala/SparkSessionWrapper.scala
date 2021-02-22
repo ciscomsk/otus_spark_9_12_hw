@@ -3,7 +3,7 @@ import org.apache.spark.sql.SparkSession
 
 trait SparkSessionWrapper extends Serializable {
 
-  implicit lazy val spark: SparkSession =
+  lazy val spark: SparkSession =
     SparkSession
       .builder()
       .master("local")

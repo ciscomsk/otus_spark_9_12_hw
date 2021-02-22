@@ -31,8 +31,8 @@ object DSPractice extends App with SparkSessionWrapper {
 
   }
 
-  val data: Dataset[Distance] = readParquet("src/main/resources/yellow_taxi_jan_25_2018", Seq("trip_distance")).as[Distance]
-  val resDS: Dataset[Mart] = processing(data)
+  val dataDS: Dataset[Distance] = readParquet("src/main/resources/yellow_taxi_jan_25_2018", Seq("trip_distance")).as[Distance]
+  val resDS: Dataset[Mart] = processing(dataDS)
 
   resDS.show
 

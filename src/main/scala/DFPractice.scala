@@ -5,7 +5,7 @@ object DFPractice extends App with SparkSessionWrapper {
 
   import spark.implicits._
 
-  def readCSV(path: String, cols2Read: Seq[String] = Seq("*"))(header: Boolean = true)(implicit spark: SparkSession): DataFrame =
+  def readCSV(path: String, cols2Read: Seq[String] = Seq("*"))(header: Boolean = true): DataFrame =
     spark
       .read
       .option("header", header)
@@ -13,7 +13,7 @@ object DFPractice extends App with SparkSessionWrapper {
       .csv(path)
       .select(cols2Read.map(col):_ *)
 
-  def readParquet(path: String, cols2Read: Seq[String] = Seq("*"))(implicit spark: SparkSession): DataFrame =
+  def readParquet(path: String, cols2Read: Seq[String] = Seq("*")): DataFrame =
     spark
       .read
       .parquet(path)

@@ -15,8 +15,7 @@ object RDDPractice extends App with SparkSessionWrapper {
     .reduceByKey(_ + _)
     .sortBy(_._2, ascending = false)
 
-  val dataRDD: RDD[Row] =
-    readParquet("src/main/resources/yellow_taxi_jan_25_2018").rdd
+  val dataRDD: RDD[Row] = readParquet("src/main/resources/yellow_taxi_jan_25_2018").rdd
 
   val resRDD: RDD[(Int, Int)] = getTimeDistributionByHours(dataRDD)
 
