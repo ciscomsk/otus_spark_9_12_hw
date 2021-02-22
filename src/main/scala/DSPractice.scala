@@ -15,20 +15,24 @@ object DSPractice extends App with SparkSessionWrapper {
                   minimum_distance: Double,
                  )
 
+  def processing(ds: Dataset[Distance]): Dataset[Mart] = {
+    val tripDistCol: ColumnName = $"trip_distance"
+
+    ds
+      .select(
+        count(tripDistCol) as "total_trips",
+        round(avg(tripDistCol), 3) as "average_distance",
+        round(stddev_pop(tripDistCol), 3) as "population_standard_deviation",
+        max(tripDistCol) as "maximum_distance",
+        min(tripDistCol) as "minimum_distance"
+      )
+      .withColumn("total_trips", $"total_trips".cast("int"))
+      .as[Mart]
+
+  }
+
   val data: Dataset[Distance] = readParquet("src/main/resources/yellow_taxi_jan_25_2018", Seq("trip_distance")).as[Distance]
-
-  val tripDistCol: ColumnName = $"trip_distance"
-
-  val resDS: Dataset[Mart] = data
-    .select(
-      count(tripDistCol) as "total_trips",
-      round(avg(tripDistCol), 3) as "average_distance",
-      round(stddev_pop(tripDistCol), 3) as "population_standard_deviation",
-      max(tripDistCol) as "maximum_distance",
-      min(tripDistCol) as "minimum_distance"
-    )
-    .withColumn("total_trips", $"total_trips".cast("int"))
-    .as[Mart]
+  val resDS: Dataset[Mart] = processing(data)
 
   resDS.show
 

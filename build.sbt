@@ -16,3 +16,5 @@ libraryDependencies ++= Seq(
 // https://mvnrepository.com/artifact/org.postgresql/postgresql
 libraryDependencies += "org.postgresql" % "postgresql" % "42.2.18"
 
+// https://mvnrepository.com/artifact/joda-time/joda-time
+libraryDependencies += "joda-time" % "joda-time" % "2.10.10"
