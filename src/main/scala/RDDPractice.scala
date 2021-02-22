@@ -9,7 +9,7 @@ object RDDPractice extends App with SparkSessionWrapper {
 
   def getTimeDistributionByHours(rdd :RDD[Row]): RDD[(Int, Int)] = rdd
     // - 3600000 => приводим к GMT +03:00
-    .map(row => new Timestamp(row.getTimestamp(1).getTime - 360000))
+    .map(row => new Timestamp(row.getTimestamp(1).getTime - 3600000))
     .map(ts => new DateTime(ts).hourOfDay.get)
     .map(hour => (hour, 1))
     .reduceByKey(_ + _)
