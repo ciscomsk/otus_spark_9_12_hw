@@ -6,7 +6,7 @@ import org.apache.spark.sql.catalyst.encoders
 import org.apache.spark.sql.catalyst.encoders.ExpressionEncoder
 import org.apache.spark.sql.test.SharedSparkSession
 
-class DFDSPractiseTest extends SharedSparkSession {
+class DFDSPracticeTest extends SharedSparkSession {
 
   test("DFPractice - processing") {
 

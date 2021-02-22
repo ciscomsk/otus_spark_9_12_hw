@@ -4,7 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Row
 import org.scalatest.flatspec.AnyFlatSpec
 
-class RDDPractiseTest extends AnyFlatSpec with SparkSessionTestWrapper {
+class RDDPracticeTest extends AnyFlatSpec with SparkSessionTestWrapper {
 
   it should "successfully calculate the distribution of taxi rides by hour" in {
 
